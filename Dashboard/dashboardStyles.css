@@ -1,0 +1,160 @@
+*{
+    margin: 0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #062F6F;
+}
+
+
+#publishButton{
+    padding: 10px 20px;
+    position: absolute;
+    bottom: 0;
+    width: 75vw;
+    margin: 20px;
+    background-color: #5779E8;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#publishButton:hover{
+    background-color: #062F6F;
+}
+
+
+.container{
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    margin: 10px;
+}
+
+#widget-area{
+    margin: 10px;
+    width: 20%;
+    display: block;
+    align-items: center;
+}
+
+
+.widget-form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.widget-form p{
+    height: fit-content; 
+    display: flex; 
+    flex-direction: column; 
+    padding: 3px; 
+    background-color: #D0DBF8; 
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.widget-form img{
+    height: fit-content; 
+    display: flex; 
+    flex-direction: column; 
+    padding: 3px; 
+    background-color: #D0DBF8; 
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.widget-form input{
+    margin-top: 15px;
+    margin-bottom: 10px;
+    background-color: #D0DBF8;
+    color: #062F6F;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: medium;
+    font-weight: bold;
+}
+
+
+#dashboard-area{
+    margin: 10px;
+}
+
+table{
+    padding: 10px;
+    font-size: smaller;
+    align-items: center;
+}
+
+#tbldelete{
+    position: absolute;
+    right: 12px;
+    color: white;
+    background-color: #D5074D;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.search{
+    border-radius: 5px;
+    height: 30px;
+    width: 250px;
+    padding: 10px;
+    margin-left: 13px;
+    border: 1px solid #062F6F;
+}
+table th{
+    cursor: pointer;
+    background-color: #5779E8;
+    color: white;
+    padding: 10px;
+}
+table th:hover{
+    background-color: #062F6F;
+}
+
+td {
+    background-color: white;
+    color: black;
+    padding: 5px;
+    border: 1px solid #ddd; 
+    text-align: center;
+}
+
+#chartCard{
+    box-shadow: 2px 2px 5px 2px #cecece;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+#myChart{
+    height: 300px;
+    width: 500px;
+}
+/* charts */
+#startdate, #enddate{
+    position: relative;
+    right: 0;
+    border-radius: 5px;
+    height: 15px;
+    width: 100px;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #062F6F;
+}
+
+#chartTypeSelect{
+    border-radius: 5px;
+    height: 30px;
+    width: 100px;
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #062F6F;
+}

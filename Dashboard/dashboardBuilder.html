@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Dashboard</title>
+    <link rel="stylesheet" href="/Dashboard/dashboardStyles.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container" >
+        <div id="widget-area" style="min-height: 100vh;">
+            <h2>WIDGETS</h2>
+            <form class="widget-form"> 
+                <p id="tblbtn" onclick="createTable()">
+                    <input id="tblbtn" type="button" onclick="createTable()" value="Create Table"> 
+                    <img src="./Images/Tablewid.png" alt="">
+                </p>
+                <p id="chrtbtn" type="button" onclick="createChart()">
+                    <input id="chrtbtn" type="button" value="Create Chart">
+                    <img src="./Images/ChartWid.jpg" alt="" srcset="">
+                </p">
+            </form>
+        </div>
+        <hr>
+        <div id="dashboard-area" style="min-height: 100%; width: 100%;">
+            <h2 style="margin-bottom: 20px;">DASHBOARD</h2>
+            <div id="dashboard" style="height: 100%; width: 100%;">   
+                
+
+            </div>
+            <div id="publish">
+                <a href="/Main/mainScreen.html"><button id="publishButton" type="button">Publish Your Dashboard</button></a>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.1.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.1.1/helpers.esm.min.js"></script>
+    <script defer src="/table_Widget/tableWidget.js"></script>
+    <script defer src="/chart_Widget/chartWidget.js"></script>
+</body>
+</html>
