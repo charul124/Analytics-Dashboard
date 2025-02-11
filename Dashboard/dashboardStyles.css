@@ -129,17 +129,6 @@ td {
     text-align: center;
 }
 
-#chartCard{
-    box-shadow: 2px 2px 5px 2px #cecece;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 5px;
-}
-
-#myChart{
-    height: 300px;
-    width: 500px;
-}
 /* charts */
 #startdate, #enddate{
     position: relative;

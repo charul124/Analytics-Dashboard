@@ -1,20 +1,33 @@
+// Load dashboard on window load
 window.addEventListener('load', dshbrd);
 
 function dshbrd() {
     const urlParams = new URLSearchParams(window.location.search);
     const dashboardPath = urlParams.get("path");
 
+    // Fetch dashboard data from local storage
     const dashboardData = JSON.parse(localStorage.getItem(`dashboard_${dashboardPath}`)) || { widgets: [] };
 
     if (dashboardData) {
         document.querySelector("h2").textContent = `${dashboardData.name}`;
+        
         // Render widgets if they exist
         if (dashboardData.widgets.length > 0) {
             dashboardData.widgets.forEach(widget => {
                 if (widget.type === 'table') {
                     createTable(widget.x, widget.y, widget.width, widget.height);
                 } else if (widget.type === 'chart') {
-                    createChart(widget.x, widget.y, widget.chartType, widget.width, widget.height);
+                    createChart(
+                        widget.x, 
+                        widget.y, 
+                        widget.chartType, 
+                        widget.width, 
+                        widget.height, 
+                        widget.startdate, 
+                        widget.enddate, 
+                        widget.chartData,
+                        widget.chartcounter
+                    );
                 }
             });
         }
@@ -23,10 +36,10 @@ function dshbrd() {
     }
 }
 
+// Publish button click event handler
 publishButton.onclick = function () {
     const urlParams = new URLSearchParams(window.location.search);
     const dashboardPath = urlParams.get("path");
-    const dashname = localStorage.getItem("name");
 
     const widgets = [];
     document.querySelectorAll('#dashboard > div').forEach(widget => {
@@ -39,8 +52,34 @@ publishButton.onclick = function () {
         if (widgetType === 'table') {
             widgets.push({ type: widgetType, x, y, width, height });
         } else {
-            const chartType = widget.querySelector('#chartTypeSelect').value;
-            widgets.push({ type: widgetType, x, y, chartType, width, height });
+            const id  = widget.id;
+            const chartType = document.getElementById(`${id}-chartTypeSelect`).value;
+            const startdate = document.getElementById(`${id}-startdate`).value;
+            const enddate = document.getElementById(`${id}-enddate`).value;
+            const chartCanvas = document.getElementById(`${id}myChart`);
+            const chartInstance = Chart.getChart(chartCanvas);
+
+            let chartData = { labels: [], datasets: [] };
+            
+            if (chartInstance) {
+                chartData.labels = chartInstance.data.labels;
+                chartData.datasets = chartInstance.data.datasets.map(dataset => ({
+                    label: dataset.label,
+                    data: dataset.data,
+                }));
+            }
+
+            widgets.push({ 
+                type: widgetType, 
+                x, 
+                y, 
+                chartType, 
+                width, 
+                height, 
+                startdate, 
+                enddate, 
+                chartData 
+            });
         }
     });
 
