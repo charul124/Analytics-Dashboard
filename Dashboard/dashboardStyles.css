@@ -7,7 +7,7 @@
 
 #publishButton{
     padding: 10px 20px;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 75vw;
     margin: 20px;
@@ -25,7 +25,6 @@
 
 .container{
     display: flex;
-    flex-direction: row;
     background-color: #ffffff;
     margin: 10px;
 }
@@ -87,6 +86,8 @@ table{
     padding: 10px;
     font-size: smaller;
     align-items: center;
+    width: 100%;
+    background-color: white;
 }
 
 #tbldelete{
@@ -96,6 +97,7 @@ table{
     background-color: #D5074D;
     border: none;
     cursor: pointer;
+    margin-top: 5px;
     border-radius: 5px;
     padding-top: 2px;
     padding-bottom: 2px;

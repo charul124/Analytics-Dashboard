@@ -5,44 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Analytics Dashboard</title>
     <link rel="stylesheet" href="./mainStyles.css">
-    
 </head>
 
 <body>
-    <nav style="background-color: #D8E3FD;margin-top: 0; height: 50px; width: 100%;">
-       <h2 style="padding: 10px;color: #062F6F; margin-top: 0;">Analytical Dashboard</h2>
+    <nav style="background-color: #D8E3FD; margin-top: 0; height: 50px; width: 100%;">
+       <h2 style="padding: 10px; color: #062F6F; margin-top: 0;">Analytical Dashboard</h2>
     </nav>
-    <div class="main">
-        <h1>
-            Create your own Analysis Dashboards
-        </h1>
-        <div>
-            <button id="create-dashboard" type="button">Create Dashboard</button>
-        </div>
-    </div>
 
-    <div id="create-dashboard-modal">
-        <button id="closebtn" style="color: #D5074D; font-size: 20px;" type="button">&times;</button>
-        <div class="modal-content">
-            <form action="">
-                <div class="forminput">
-                    <label for="dashboard-name">Dashboard Name : </label>
-                    <input type="text" id="dashboard-name" name="dashboard-name">
-                    
-                </div>
-                <div class="forminput">
-                    <label for="dashboard-description">Dashboard Description : </label>
-                    <textarea name="dashboard-description" id="dashboard-description" cols="11"></textarea>
-                </div>
-                <div class="forminput">
-                    <label for="dashboard-path">Dashboard Path : </label>
-                    <input type="text" name="dashboard-path" id="dashboard-path">
-                </div>
-                <button id="submitbtn" type="submit">Create</button>
-            </form>
+    <div id="main">
+        <h1>Create your own Analysis Dashboards</h1>
+        <button id="create-dashboard" type="button">Create Dashboard</button>
+        <div id="saved-dashboards">
+            <h2 style="color: #062F6F;">Available Dashboards</h2>
+            <div id="dashboard-list">
+            </div>
+        </div>
+        
+    </div>
+    <div id="modalbg" style="background-color: beige; height: 100%; width: 100%;">
+        <div id="create-dashboard-modal" style="display: none;">
+            <button id="closebtn" style="color: #D5074D; font-size: 20px;" type="button">&times;</button>
+            <div class="modal-content">
+                <form id="dashboard-form">
+                    <div class="forminput">
+                        <label for="dashboard-name">Dashboard Name:</label>
+                        <input placeholder="Your Dashboard Name" type="text" id="dashboard-name" name="dashboard-name" required>
+                    </div>
+                    <div class="forminput">
+                        <label for="dashboard-description">Dashboard Description:</label>
+                        <textarea placeholder="Add Description" name="dashboard-description" style="margin-top: 10px;" id="dashboard-description" cols="50" required></textarea>
+                    </div>
+                    <div class="forminput">
+                        <label for="dashboard-path">Dashboard Path:</label>
+                        <input placeholder="Path to store your dashboard" type="text" name="dashboard-path" id="dashboard-path" required>
+                    </div>
+                    <button id="submitbtn" type="submit">Create</button>
+                </form>
+            </div>
         </div>
     </div>
-    <script src="./mainScreen.js"></script>
     
+
+    <script src="./mainScreen.js"></script>
 </body>
 </html>

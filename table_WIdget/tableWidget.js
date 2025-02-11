@@ -27,7 +27,7 @@ function dragTable(){
     });
 };
 
-function createTable(initialX = 940, initialY = 60) {
+function createTable(initialX = 940, initialY = 60, width = '500px', height = '300px') {
     fetch('/Data/TableData.json')
         .then(response => response.json())
         .then(tableData => {
@@ -47,7 +47,6 @@ function createTable(initialX = 940, initialY = 60) {
 
             const table = document.createElement('table');
             table.id = `myTable-${tableCounter}`;
-            
 
             const searching = document.createElement("input");
             searching.classList = 'search';
@@ -58,17 +57,20 @@ function createTable(initialX = 940, initialY = 60) {
             tableContainer.appendChild(deleteButton);
             tableContainer.appendChild(table);
 
-            tableContainer.style.position = 'absolute'; 
+            tableContainer.style.position = 'absolute';
             tableContainer.style.left = `${initialX}px`;
             tableContainer.style.top = `${initialY}px`;
             tableContainer.setAttribute('draggable', true);
             tableContainer.style.padding = '10px'
-            tableContainer.style.width = 'fit-content'
+            tableContainer.style.width = width;
             tableContainer.style.margin = '10px'
             tableContainer.style.borderRadius = '5px'
+            tableContainer.style.backgroundColor = "white"
             tableContainer.style.boxShadow = '2px 2px 5px 2px #cecece'
-            tableContainer.style.height = '338px'
+            tableContainer.style.height = height;
             tableContainer.style.overflow = 'scroll'
+            tableContainer.style.resize = "both"
+            tableContainer.style.overflow = 'auto'
 
             tableContainer.addEventListener('dragstart', (event) => {
                 event.dataTransfer.setData('text/plain', 'dragging');

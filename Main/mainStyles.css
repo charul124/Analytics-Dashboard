@@ -5,7 +5,7 @@ body{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }
-.main {
+#main {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,13 +53,18 @@ h1 {
     cursor: pointer;
 }
 
+#modalbg{
+    height: 100%;
+    width: 100%;
+    background-color: #813737;
+}
+
 #create-dashboard-modal{
     display: flex;
     gap: 10px;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
-    height: 40vh;
+    height: 35vh;
     width: 30vw;
     padding: 20px;
     display: none;
@@ -69,15 +74,68 @@ h1 {
     top: 0;
     margin-top: 10%;
     margin-left: 33%;
-    overflow: auto;
-    background-color: rgb(255, 255, 255);
+    background-color: white;
     border-radius: 15px;
     border: 0.5px solid;
     box-shadow: 5px 5px lightgray;
+}
+
+#dashboard-name,#dashboard-path{
+    width: 92%;
+    height: 20px;
+    margin-top: 10px;
+}
+#dashboard-form{
+    font-size: large;
+    font-weight: 300;
 }
 
 .forminput{
     padding: 10px;
     border-radius: 5px;
     width: 100%;
+}
+#saved-dashboards{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 5%;
+}
+#dashboard{
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#dashboard p{
+    margin-bottom: 10px;
+    padding-left: 5px;
+    color: #062F6F;
+    width: 180px;
+    text-wrap: auto;
+}
+
+#dashboard h3{
+    margin: 0;
+    padding-left: 5px;
+    color: #062F6F;
+}
+#dashboard a{
+    display: block;
+    text-align: center;
+    background-color: #D0DBF8;
+    border-radius: 3px;
+    color: #062F6F;
+    text-decoration: none;
+    padding: 5px;
+    padding-left: 5px;
+    width: 95%;
+}
+#dashboard-list{
+    display: flex;
+    gap: 30px;
+}
+
+#dashboardimg{
+    height: 150px;
 }

@@ -27,7 +27,7 @@ window.onload = () => {
     });
 };
 
-function createChart(initialX = 340, initialY = 60) {
+function createChart(initialX = 340, initialY = 60, chartType = 'bar', width = '500px', height = '300px') {
     newlabels.length = 0;
     datapoints.length = 0;
 
@@ -36,12 +36,12 @@ function createChart(initialX = 340, initialY = 60) {
         .then(chartData => {
             const data = chartData.map(item => {
                 const date = new Date(item.CurrentTime * 1000);
-                const formattedDate = date.toISOString().split('T')[0]; 
-                const partsSold = parseInt(item.PartsSold, 10);
+                const formattedDate = date.toISOString().split('T')[0];
+                const partsSold = item.PartsSold;
                 return { date: formattedDate, partsSold: partsSold };
             });
             data.sort((a, b) => new Date(a.date) - new Date(b.date));
-            
+
             data.forEach(item => {
                 newlabels.push(item.date);
                 datapoints.push(item.partsSold);
@@ -59,8 +59,6 @@ function createChart(initialX = 340, initialY = 60) {
             borderWidth: 1
         }]
     };
-
-    let chartType = 'bar';
 
     const config = {
         type: chartType,
@@ -89,12 +87,16 @@ function createChart(initialX = 340, initialY = 60) {
     const chartCard = document.createElement('div');
     chartContainer.appendChild(chartCard);
     chartCard.id = 'chartCard';
-    
-    chartCard.style.position = 'absolute'; 
+
+    chartCard.style.position = 'absolute';
     chartCard.style.left = `${initialX}px`;
     chartCard.style.top = `${initialY}px`;
+    chartCard.style.width = width;
+    chartCard.style.height = height;
     chartCard.setAttribute('draggable', true);
-    
+    chartCard.style.resize = "both";
+    chartCard.style.overflow = 'auto';
+
     chartCard.addEventListener('dragstart', (event) => {
         event.dataTransfer.setData('text/plain', 'dragging');
         offsetX = event.offsetX;
@@ -107,8 +109,6 @@ function createChart(initialX = 340, initialY = 60) {
     });
 
     const canvas = document.createElement('canvas');
-    // canvas.style.height = '300px';
-    // canvas.style.width = '563px';
     canvas.id = 'myChart';
 
     const chartTypeSelect = document.createElement('select');
@@ -120,6 +120,8 @@ function createChart(initialX = 340, initialY = 60) {
         option.textContent = type.slice(0);
         chartTypeSelect.appendChild(option);
     });
+
+    chartTypeSelect.value = chartType;
 
     chartTypeSelect.addEventListener('change', (event) => {
         chartType = event.target.value;
@@ -164,7 +166,7 @@ function createChart(initialX = 340, initialY = 60) {
 
         let currentDate = new Date(startdate);
         const allDates = [];
-        
+
         while (currentDate <= enddate) {
             allDates.push(new Date(currentDate).toISOString().split('T')[0]);
             currentDate.setDate(currentDate.getDate() + 1);
@@ -172,7 +174,7 @@ function createChart(initialX = 340, initialY = 60) {
 
         const datefilter = allDates.filter(date => dates2.includes(date));
         console.log('Filtered dates:', datefilter);
-        
+
         myChart.config.data.labels = datefilter;
         myChart.update();
     }
