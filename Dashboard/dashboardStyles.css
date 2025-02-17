@@ -6,11 +6,9 @@
 
 
 #publishButton{
+    width: 100%;
+    margin-top: 50px;
     padding: 10px 20px;
-    position: fixed;
-    bottom: 0;
-    width: 75vw;
-    margin: 20px;
     background-color: #5779E8;
     color: white;
     border: none;
@@ -90,27 +88,30 @@ table{
     background-color: white;
 }
 
-#tbldelete{
+.tablecontainer {
     position: absolute;
-    right: 12px;
-    color: white;
-    background-color: #D5074D;
-    border: none;
-    cursor: pointer;
-    margin-top: 5px;
+    padding: 10px;
+    margin: 10px;
     border-radius: 5px;
-    padding-top: 2px;
-    padding-bottom: 2px;
+    background-color: white;
+    box-shadow: 2px 2px 5px 2px #cecece;
+    overflow: auto;
+    resize: both;
 }
 
 .search{
-    border-radius: 5px;
-    height: 30px;
-    width: 250px;
-    padding: 10px;
-    margin-left: 13px;
-    border: 1px solid #062F6F;
+    width: 80%;
 }
+
+.tablefilter{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #ffffff;
+    position: sticky;
+    top: 0;
+}
+
 table th{
     cursor: pointer;
     background-color: #5779E8;
@@ -130,22 +131,30 @@ td {
 }
 
 /* charts */
-#startdate, #enddate{
-    position: relative;
-    right: 0;
+.chartCard {
+    position: absolute;
+    box-shadow: 2px 2px 5px 2px #cecece;
+    padding: 10px;
+    margin: 10px;
     border-radius: 5px;
-    height: 15px;
-    width: 100px;
-    padding: 5px;
+    resize: both;
+    overflow: auto;
+}
+#filterbar{
+    display: flex;
+    justify-content: space-between;
     margin: 5px;
-    border: 1px solid #062F6F;
+    position: sticky;
+    top: 0;
 }
 
-#chartTypeSelect{
+#selectFilter{
+    display: flex;
+    gap: 5px;
+}
+.chartDelete, #tbldelete{
+    background-color: #D5074D;
+    border: none;
+    color:#ffffff;
     border-radius: 5px;
-    height: 30px;
-    width: 100px;
-    padding: 5px;
-    margin: 5px;
-    border: 1px solid #062F6F;
 }

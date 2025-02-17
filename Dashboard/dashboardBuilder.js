@@ -5,13 +5,11 @@ function dshbrd() {
     const urlParams = new URLSearchParams(window.location.search);
     const dashboardPath = urlParams.get("path");
 
-    // Fetch dashboard data from local storage
     const dashboardData = JSON.parse(localStorage.getItem(`dashboard_${dashboardPath}`)) || { widgets: [] };
 
     if (dashboardData) {
         document.querySelector("h2").textContent = `${dashboardData.name}`;
         
-        // Render widgets if they exist
         if (dashboardData.widgets.length > 0) {
             dashboardData.widgets.forEach(widget => {
                 if (widget.type === 'table') {
@@ -82,9 +80,11 @@ publishButton.onclick = function () {
             });
         }
     });
-
+    const storedObjectString = localStorage.getItem(`dashboard_${dashboardPath}`);
+    const storedObject = JSON.parse(storedObjectString);
+    const name = storedObject.name;
     const updatedDashboardData = {
-        name: "Your Dashboard",
+        name: name,
         path: dashboardPath,
         widgets: widgets,
     };

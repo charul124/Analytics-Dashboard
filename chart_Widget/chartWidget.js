@@ -92,20 +92,14 @@ function createChart(initialX = 340, initialY = 60, chartType = 'bar', width = '
     const chartCard = document.createElement('div');
     chartContainer.appendChild(chartCard);
     chartCard.id = chartId;
+    chartCard.classList = "chartCard"
 
-    chartCard.style.position = 'absolute';
     chartCard.style.left = `${initialX}px`;
     chartCard.style.top = `${initialY}px`;
     chartCard.style.width = width;
     chartCard.style.height = height;
-    chartCard.style.boxShadow = '2px 2px 5px 2px #cecece'
-    chartCard.style.padding = '10px'
-    chartCard.style.margin ='10px'
-    chartCard.style.borderRadius = '5px'
+    
     chartCard.setAttribute('draggable', true);
-    chartCard.style.resize = "both";
-    chartCard.style.overflow = 'auto';
-
     chartCard.addEventListener('dragstart', (event) => {
         event.dataTransfer.setData('text/plain', 'dragging');
         offsetX = event.offsetX;
@@ -119,9 +113,13 @@ function createChart(initialX = 340, initialY = 60, chartType = 'bar', width = '
 
     const canvas = document.createElement('canvas');
     canvas.id = `${chartId}-canvas`;
-
+    const filterbar = document.createElement('div');
+    filterbar.id = "filterbar";
+    const selectfilter = document.createElement('div')
+    selectfilter.id = "selectFilter"
     const chartTypeSelect = document.createElement('select');
     chartTypeSelect.id = `${chartId}-chartTypeSelect`;
+    
 
     ['bar', 'line', 'pie'].forEach(type => {
         const option = document.createElement('option');
@@ -131,6 +129,7 @@ function createChart(initialX = 340, initialY = 60, chartType = 'bar', width = '
     });
 
     chartTypeSelect.value = chartType;
+    chartTypeSelect.classList = "chartTypeSelect";
 
     chartTypeSelect.addEventListener('change', (event) => {
         chartType = event.target.value;
@@ -138,35 +137,19 @@ function createChart(initialX = 340, initialY = 60, chartType = 'bar', width = '
         config.type = chartType;
         myChart = new Chart(canvas, config);
     });
-    chartTypeSelect.style.borderRadius = '5px'
-    chartTypeSelect.style.height = "30px";
-    chartTypeSelect.style.width ='100px';
-    chartTypeSelect.style.paddin = '5px';
-    chartTypeSelect.style.margin = '5px';
-    chartTypeSelect.style.border = '1px solid #062F6F';
+    
 
     const indate = document.createElement('input');
     indate.type = 'date';
     indate.id = `${chartId}-startdate`;
+    indate.classList = "startdate"
     indate.value = startDate;
     
     const outdate = document.createElement('input');
     outdate.type = 'date';
     outdate.id = `${chartId}-enddate`;
+    outdate.classList ="enddate"
     outdate.value = endDate;
-
-    indate.style.height = '18px'
-    indate.style.width = '100px'
-    indate.style.padding = '5px'
-    indate.style.margin = '5px'
-    indate.style.borderRadius = '5px'
-    indate.style.border = '1px solid #062F6F'
-    outdate.style.height = '18px'
-    outdate.style.width = '100px'
-    outdate.style.padding = '5px'
-    outdate.style.margin = '5px'
-    outdate.style.borderRadius = '5px'
-    outdate.style.border = '1px solid #062F6F'
 
     indate.addEventListener('change', () => filterdate(chartId)(indate.value, outdate.value));
     outdate.addEventListener('change', () => filterdate(chartId)(indate.value, outdate.value));
@@ -174,25 +157,23 @@ function createChart(initialX = 340, initialY = 60, chartType = 'bar', width = '
     const deleteButton = document.createElement('button');
     deleteButton.innerHTML = '&times';
     deleteButton.id = `${chartId}-deleteButton`;
+    deleteButton.classList = "chartDelete";
     deleteButton.addEventListener('click', () => {
         chartCard.remove();
     });
-    deleteButton.style.position = 'absolute'
-    deleteButton.style.right = '12px'
-    deleteButton.style.marginTop = '8px'
 
-    chartCard.appendChild(chartTypeSelect);
-    chartCard.appendChild(indate);
-    chartCard.appendChild(outdate);
-    chartCard.appendChild(deleteButton);
+    selectfilter.appendChild(indate);
+    selectfilter.appendChild(outdate);
+    selectfilter.appendChild(chartTypeSelect);
+    filterbar.appendChild(selectfilter);
+    filterbar.appendChild(deleteButton);
+    chartCard.appendChild(filterbar);
     chartCard.appendChild(canvas);
 
     let myChart = new Chart(canvas, config);
 
     const filterdate = chartId => (startDate, endDate) => {
         const dates2 = [...newlabels];
-        console.log("Start date is :", startDate);
-        console.log("End date is :", endDate);
 
         const startdate = new Date(startDate);
         const enddate = new Date(endDate);

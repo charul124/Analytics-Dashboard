@@ -21,7 +21,7 @@ function dragTable(){
         event.preventDefault();
         const widgetType = event.dataTransfer.getData('widgetType');
         if (widgetType === 'table') {
-            createTable();
+            createTable(event.clientX, event.clientY, '500px', '300px');
         }
         console.log("I have been Dropped");
     });
@@ -36,8 +36,11 @@ function createTable(initialX = 940, initialY = 60, width = '500px', height = '3
             const tableCard = document.getElementById('dashboard');
             const tableContainer = document.createElement('div');
             tableContainer.id = `tableContainer-${tableCounter}`;
+            tableContainer.classList = 'tablecontainer'
             tableCard.appendChild(tableContainer);
 
+            const tablefilter = document.createElement('div')
+            tablefilter.classList ="tablefilter"
             const deleteButton = document.createElement('button');
             deleteButton.innerHTML = '&times';
             deleteButton.id = 'tbldelete';
@@ -53,24 +56,16 @@ function createTable(initialX = 940, initialY = 60, width = '500px', height = '3
             searching.type = "search";
             searching.placeholder = "Search here...";
             searching.addEventListener('input', () => searchTable(tableContainer.id));
-            tableContainer.appendChild(searching);
-            tableContainer.appendChild(deleteButton);
+            tablefilter.appendChild(searching)
+            tablefilter.appendChild(deleteButton);
+            tableContainer.appendChild(tablefilter);
             tableContainer.appendChild(table);
+            tableContainer.setAttribute('draggable', true);
 
-            tableContainer.style.position = 'absolute';
             tableContainer.style.left = `${initialX}px`;
             tableContainer.style.top = `${initialY}px`;
-            tableContainer.setAttribute('draggable', true);
-            tableContainer.style.padding = '10px'
-            tableContainer.style.width = width;
-            tableContainer.style.margin = '10px'
-            tableContainer.style.borderRadius = '5px'
-            tableContainer.style.backgroundColor = "white"
-            tableContainer.style.boxShadow = '2px 2px 5px 2px #cecece'
             tableContainer.style.height = height;
-            tableContainer.style.overflow = 'scroll'
-            tableContainer.style.resize = "both"
-            tableContainer.style.overflow = 'auto'
+            tableContainer.style.width = width;
 
             tableContainer.addEventListener('dragstart', (event) => {
                 event.dataTransfer.setData('text/plain', 'dragging');
@@ -90,6 +85,7 @@ function createTable(initialX = 940, initialY = 60, width = '500px', height = '3
                 th.setAttribute('data-column-index', headers.indexOf(header));
                 th.addEventListener('click', () => sortTable(table.id, headers.indexOf(header)));
                 table.appendChild(th);
+                
             });
 
             tableData.forEach(rowData => {
@@ -113,10 +109,6 @@ function searchTable(containerId) {
         return;
     }
     const input = tableContainer.querySelector('.search');
-    if (!input) {
-        console.error('Search input not found in container with ID:', containerId);
-        return;
-    }
     const table = tableContainer.querySelector('table');
     if (!table) {
         console.error('Table not found in container with ID:', containerId);
@@ -135,7 +127,7 @@ function searchTable(containerId) {
                     showRow = true;
                     break;
                 }
-            }
+            } 
         }
         tr[i].style.display = showRow ? '' : 'none';
     }

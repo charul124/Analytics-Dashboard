@@ -26,9 +26,8 @@ submitbtn.onclick = function (event) {
     const dashboardDescription = document.getElementById("dashboard-description").value;
     const dashboardPath = document.getElementById("dashboard-path").value;
 
-    // Save dashboard metadata to localStorage
     const dashboardData = {
-        name: dashboardName,
+        name: "Your Dashboard : " + dashboardName,
         description: dashboardDescription,
         path: dashboardPath,
         widgets: [],
@@ -44,10 +43,20 @@ submitbtn.onclick = function (event) {
     window.location.href = `/Dashboard/dashboardBuilder.html?path=${dashboardPath}`;
 };
 
+const availabledashboard = document.getElementById('availabledash');
 // Render available dashboards
 function renderDashboards() {
     dashboardList.innerHTML = "";
-    var dashboards = JSON.parse(localStorage.getItem("dashboards")) || [];
+    let dashboards = JSON.parse(localStorage.getItem("dashboards")) || [];
+    if(dashboards.length == 0){
+        dash = document.createElement('h2');
+        dash.innerHTML ="No Dashboards Available";
+        availabledashboard.appendChild(dash);
+    }else{
+        dash = document.createElement('h2');
+        dash.innerHTML ="Available Dashboards"
+        availabledashboard.appendChild(dash);
+    }
 
     dashboards.forEach(function (dashboard) {
         var dashboardItem = document.createElement("div");
