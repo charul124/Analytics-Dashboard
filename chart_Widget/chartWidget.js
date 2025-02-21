@@ -35,12 +35,12 @@ function createChart(initialX = 340, initialY = 60, chartType = 'bar', width = '
         .then(response => response.json())
         .then(data => {
             const filteredData = data.filter(item => {
-                const date = new Date(item.CurrentTime * 1000);
+                const date = new Date(item.SellingTime * 1000);
                 return date >= new Date(startDate) && date <= new Date(endDate);
             });
 
             filteredData.forEach(item => {
-                const date = new Date(item.CurrentTime * 1000);
+                const date = new Date(item.SellingTime * 1000);
                 const formattedDate = date.toISOString().split('T')[0];
                 newlabels.push(formattedDate);
                 datapoints.push(item.PartsSold);

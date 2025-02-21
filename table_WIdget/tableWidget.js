@@ -1,4 +1,4 @@
-let tableCounter = 0; // Counter to assign unique IDs
+let tableCounter = 0;
 window.addEventListener('load', dragTable);
 
 function dragTable(){
