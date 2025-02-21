@@ -28,8 +28,8 @@ window.onload = () => {
 };
 
 function createChart(initialX = 340, initialY = 60, chartType = 'bar', width = '500px', height = '300px', startDate = '2024-02-18', endDate = '2025-03-25', chartData = null, chartId = chartCounter++) {
-    newlabels.length = 0;
-    datapoints.length = 0;
+    newlabels = [];
+    datapoints = [];
 
     fetch('/Data/ChartData.json')
         .then(response => response.json())

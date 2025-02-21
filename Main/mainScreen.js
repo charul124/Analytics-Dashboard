@@ -44,6 +44,7 @@ submitbtn.onclick = function (event) {
 };
 
 const availabledashboard = document.getElementById('availabledash');
+
 // Render available dashboards
 function renderDashboards() {
     dashboardList.innerHTML = "";
